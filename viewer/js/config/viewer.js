@@ -23,7 +23,7 @@ define([
 		mapOptions: {
 			basemap: 'streets',
 			center: [-82.43, 27.26],
-			zoom: 9,
+			zoom: 13,
 			sliderStyle: 'small'
 		},
 		// panes: {
@@ -93,7 +93,7 @@ define([
 			options: {
 				id: 'appraiser',
 				opacity: 1.0,
-				visible: false,
+				visible: true,
 				imageParameters: imageParameters
 			},
 			identifyLayerInfos: {
@@ -103,7 +103,7 @@ define([
 			type: 'dynamic',
 			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/AppraiserWM/MapServer',
 			title: 'Parcels',
-			slider: true,
+			slider: false,
 			noLegend: false,
 			collapsed: false,
 			options: {
@@ -155,6 +155,7 @@ define([
                 include: true,
                 id: 'identifyPanel',
                 type: 'titlePane',
+                canFloat: true,
                 path: 'gis/dijit/IdentifyPanel',
                 title: 'Identify Parcels',
                 open: true,
@@ -274,6 +275,7 @@ define([
 				type: 'titlePane',
 				path: 'gis/dijit/TOC',
 				title: 'Layers',
+				canFloat: true,
 				open: false,
 				position: 3,
 				options: {
@@ -328,7 +330,7 @@ define([
 				options: {
 					map: true,
 					mapClickMode: true,
-					defaultAreaUnit: units.SQUARE_MILES,
+					defaultAreaUnit: units.ACRES,
 					defaultLengthUnit: units.MILES
 				}
 			},
