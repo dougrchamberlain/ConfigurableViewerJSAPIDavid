@@ -21,48 +21,48 @@ define({
 	// for details on pop-up definition see: https://developers.arcgis.com/javascript/jshelp/intro_popuptemplate.html
 
 	identifies: {
-		meetupHometowns: {
+		// appraiser: {
+		// 	0: {
+		// 		title: 'parcels',
+		// 		fieldInfos: [{
+		// 			fieldName: 'ACCOUNT',
+		// 			visible: true
+		// 		}]
+		// 	}
+		// },
+		parcels: {
 			0: {
-				title: 'Hometowns',
+				title: 'Appraiser Info',
 				fieldInfos: [{
-					fieldName: 'Location',
+					fieldName: 'Account',
+					visible: true
+				}, {
+					fieldName: 'Dept',
+					visible: true
+				}, {
+					fieldName: 'Mkt_Area',
+					visible: true
+				}, {
+					fieldName: 'Zone',
+					visible: true
+				}, {
+					fieldName: 'Nghb',
 					visible: true
 				}]
-			}
-		},
-		louisvillePubSafety: {
-			2: {
-				title: 'Police Station',
-				fieldInfos: [{
-					fieldName: 'Name',
-					visible: true
-				}, {
-					fieldName: 'Address',
-					visible: true
-				}, {
-					fieldName: 'Type',
-					visible: true
-				}, {
-					fieldName: 'Police Function',
-					visible: true
-				}, {
-					fieldName: 'Last Update Date',
-					visible: true
-				}]
-			},
-			8: {
-				title: 'Traffic Camera',
-				description: '{Description} lasted updated: {Last Update Date}',
-				mediaInfos: [{
-					title: '',
-					caption: '',
-					type: 'image',
-					value: {
-						sourceURL: '{Location URL}',
-						linkURL: '{Location URL}'
-					}
-				}]
-			}
+			}//,
+			// 8: {
+			// 	title: 'Traffic Camera',
+			// 	description: '{Description} lasted updated: {Last Update Date}',
+			// 	mediaInfos: [{
+			// 		title: '',
+			// 		caption: '',
+			// 		type: 'image',
+			// 		value: {
+			// 			sourceURL: '{Location URL}',
+			// 			linkURL: '{Location URL}'
+			// 		}
+			// 	}]
+			// }
 		}
 	}
 });
