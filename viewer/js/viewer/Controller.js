@@ -232,6 +232,8 @@ define([
                 }
             }
         },
+
+        
         initWidgets: function(evt) {
             var widgets = [],
                 paneWidgets;

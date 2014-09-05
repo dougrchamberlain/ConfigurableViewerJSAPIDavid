@@ -164,7 +164,22 @@ define([
                     map: true,
                     allowPopup: false           
                 }
-            },          
+            }, 
+
+            infoPage: {
+                include: true,
+                id: 'infoPage',
+                type: 'titlePane',
+                canFloat: true,
+                path: 'gis/dijit/InfoPage',
+                title: 'Info about Parcels',
+                open: true,
+                position: 200,
+                options: {
+                    map: true,
+                    allowPopup: false           
+                }
+            },                   
 
 			
 			basemaps: {
