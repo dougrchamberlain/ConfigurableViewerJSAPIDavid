@@ -10,9 +10,9 @@ function(declare, _WidgetBase, _TemplatedMixin, template) {
 
 	return declare([_WidgetBase, _TemplatedMixin], {
 		templateString: template,
-		//widgetInTemplate: true,
-		//postCreate: function(){}
-		//this.startup(); 
+		widgetInTemplate: true,
+		postCreate: function(){}
+		this.startup(); 
 		}
 	});
 });
