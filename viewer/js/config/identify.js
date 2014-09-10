@@ -21,48 +21,101 @@ define({
 	// for details on pop-up definition see: https://developers.arcgis.com/javascript/jshelp/intro_popuptemplate.html
 
 	identifies: {
-		meetupHometowns: {
+		// appraiser: {
+		// 	0: {
+		// 		title: 'parcels',
+		// 		fieldInfos: [{
+		// 			fieldName: 'ACCOUNT',
+		// 			visible: true
+		// 		}]
+		// 	}
+		// },
+		parcels: {
 			0: {
-				title: 'Hometowns',
+				title: 'Appraiser Info',
 				fieldInfos: [{
-					fieldName: 'Location',
+					fieldName: 'ID',
+					label: 'Account Number',
 					visible: true
+				}, {
+					fieldName: 'Dept',
+					label: 'Department',
+					visible: true
+				}, {
+					fieldName: 'Mkt_Area',
+					label: 'Market Area',
+					visible: true
+				}, {
+					fieldName: 'Zone',
+					label: 'Appraiser Zone',
+					visible: true
+				}, {
+					fieldName: 'Nghb',
+					label: 'Neighborhood',
+					visible: true
+				}, {
+					fieldName: 'Land_Val',
+					format: { places: 0, digitSeparator: true },
+					label: 'Land Value',
+					visible: true
+				}, {
+					fieldName: 'Improvemt',
+					format: { places: 0, digitSeparator: true },
+					label: 'Improvement Value',
+					visible: true
+				}, {
+					fieldName: 'Just',
+					format: { places: 0, digitSeparator: true },
+					label: 'Just Value',
+					visible: true
+				}, {
+					fieldName: 'Assessed',
+					format: { places: 0, digitSeparator: true },
+					label: 'Assessed Value',
+					visible: true
+				}, {
+					fieldName: 'Taxable',
+					format: { places: 0, digitSeparator: true },
+					label: 'Taxable Value',
+					visible: true
+				}, {
+					fieldName: 'Lsqft',
+					label: 'Land SqFt',
+					visible: true
+				}, {
+					fieldName: 'TotalAdjustment',
+					label: 'Total Adjustment',
+					visible: true
+				}, {
+					fieldName: 'Sale_Amt',
+					label: 'Sales Amount',
+					format: { places: 0, digitSeparator: true },
+					visible: true
+				}, {
+					fieldName: 'Sale_Date',
+					label: 'Sale Date',
+					format: { dateFormat: 'shortDateShortTime' },
+					visible: true
+				}, {
+					fieldName: 'Qual_Code',
+					label: 'Qual Code',
+					visible: true
+
 				}]
-			}
-		},
-		louisvillePubSafety: {
-			2: {
-				title: 'Police Station',
-				fieldInfos: [{
-					fieldName: 'Name',
-					visible: true
-				}, {
-					fieldName: 'Address',
-					visible: true
-				}, {
-					fieldName: 'Type',
-					visible: true
-				}, {
-					fieldName: 'Police Function',
-					visible: true
-				}, {
-					fieldName: 'Last Update Date',
-					visible: true
-				}]
-			},
-			8: {
-				title: 'Traffic Camera',
-				description: '{Description} lasted updated: {Last Update Date}',
-				mediaInfos: [{
-					title: '',
-					caption: '',
-					type: 'image',
-					value: {
-						sourceURL: '{Location URL}',
-						linkURL: '{Location URL}'
-					}
-				}]
-			}
+			}//,
+			// 8: {
+			// 	title: 'Traffic Camera',
+			// 	description: '{Description} lasted updated: {Last Update Date}',
+			// 	mediaInfos: [{
+			// 		title: '',
+			// 		caption: '',
+			// 		type: 'image',
+			// 		value: {
+			// 			sourceURL: '{Location URL}',
+			// 			linkURL: '{Location URL}'
+			// 		}
+			// 	}]
+			// }
 		}
 	}
 });

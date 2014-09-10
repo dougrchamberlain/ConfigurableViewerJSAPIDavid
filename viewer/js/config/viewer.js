@@ -22,8 +22,8 @@ define([
 		// map options, passed to map constructor. see: https://developers.arcgis.com/javascript/jsapi/map-amd.html#map1
 		mapOptions: {
 			basemap: 'streets',
-			center: [-96.59179687497497, 39.09596293629694],
-			zoom: 5,
+			center: [-82.43, 27.26],
+			zoom: 13,
 			sliderStyle: 'small'
 		},
 		// panes: {
@@ -58,40 +58,40 @@ define([
 		// The 'options' object is passed as the layers options for constructor. Title will be used in the legend only. id's must be unique and have no spaces.
 		// 3 'mode' options: MODE_SNAPSHOT = 0, MODE_ONDEMAND = 1, MODE_SELECTION = 2
 		operationalLayers: [{
-			type: 'feature',
-			url: 'http://services1.arcgis.com/g2TonOxuRkIqSOFx/arcgis/rest/services/MeetUpHomeTowns/FeatureServer/0',
-			title: 'STLJS Meetup Home Towns',
-			options: {
-				id: 'meetupHometowns',
-				opacity: 1.0,
-				visible: true,
-				outFields: ['*'],
-				mode: 0
-			},
-			editorLayerInfos: {
-				disableGeometryUpdate: false
-			}
-		}, {
-			type: 'feature',
-			url: 'http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0',
-			title: 'San Francisco 311 Incidents',
-			options: {
-				id: 'sf311Incidents',
-				opacity: 1.0,
-				visible: true,
-				outFields: ['req_type', 'req_date', 'req_time', 'address', 'district'],
-				mode: 0
-			}
+			// type: 'feature',
+			// url: 'http://services1.arcgis.com/g2TonOxuRkIqSOFx/arcgis/rest/services/MeetUpHomeTowns/FeatureServer/0',
+			// title: 'STLJS Meetup Home Towns',
+			// options: {
+			// 	id: 'meetupHometowns',
+			// 	opacity: 1.0,
+			// 	visible: true,
+			// 	outFields: ['*'],
+			mode: 3
+			// },
+			// editorLayerInfos: {
+			// 	disableGeometryUpdate: false
+			// }
+		// }, {
+		// 	type: 'feature',
+		// 	url: 'http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0',
+		// 	title: 'San Francisco 311 Incidents',
+		// 	options: {
+		// 		id: 'sf311Incidents',
+		// 		opacity: 1.0,
+		// 		visible: true,
+		// 		outFields: ['req_type', 'req_date', 'req_time', 'address', 'district'],
+		// 		mode: 0
+		// 	}
 		}, {
 			type: 'dynamic',
-			url: 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/PublicSafety/PublicSafetyOperationalLayers/MapServer',
-			title: 'Louisville Public Safety',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/scpaAppraiserGIS_WM/MapServer',
+			title: 'Appraiser Layers',
 			slider: true,
 			noLegend: false,
 			collapsed: false,
 			sublayerToggle: false, //true to automatically turn on sublayers
 			options: {
-				id: 'louisvillePubSafety',
+				id: 'appraiser',
 				opacity: 1.0,
 				visible: true,
 				imageParameters: imageParameters
@@ -101,13 +101,13 @@ define([
 			}
 		}, {
 			type: 'dynamic',
-			url: 'http://sampleserver6.arcgisonline.com/arcgis/rest/services/DamageAssessment/MapServer',
-			title: 'Damage Assessment',
-			slider: true,
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/AppraiserWM/MapServer',
+			title: 'Parcels',
+			slider: false,
 			noLegend: false,
 			collapsed: false,
 			options: {
-				id: 'DamageAssessment',
+				id: 'parcels',
 				opacity: 1.0,
 				visible: true,
 				imageParameters: imageParameters
@@ -147,9 +147,41 @@ define([
 				path: 'gis/dijit/Identify',
 				title: 'Identify',
 				open: false,
-				position: 3,
+				position: 100,
 				options: 'config/identify'
 			},
+
+			identifyPanel: {
+                include: true,
+                id: 'identifyPanel',
+                type: 'titlePane',
+                canFloat: true,
+                path: 'gis/dijit/IdentifyPanel',
+                title: 'Identify Parcels',
+                open: true,
+                position: 1,
+                options: {
+                    map: true,
+                    allowPopup: false           
+                }
+            }, 
+
+            infoPage: {
+                include: true,
+                id: 'infoPage',
+                type: 'titlePane',
+                canFloat: true,
+                path: 'gis/dijit/InfoPage',
+                title: 'Info about Parcels',
+                open: true,
+                position: 200,
+                options: {
+                    map: true,
+                    allowPopup: false           
+                }
+            },                   
+
+			
 			basemaps: {
 				include: true,
 				id: 'basemaps',
@@ -240,13 +272,13 @@ define([
 				}
 			},
 			legend: {
-				include: true,
+				include: false,
 				id: 'legend',
 				type: 'titlePane',
 				path: 'esri/dijit/Legend',
 				title: 'Legend',
 				open: false,
-				position: 0,
+				//position: 0,
 				options: {
 					map: true,
 					legendLayerInfos: true
@@ -258,21 +290,22 @@ define([
 				type: 'titlePane',
 				path: 'gis/dijit/TOC',
 				title: 'Layers',
+				canFloat: true,
 				open: false,
-				position: 1,
+				position: 3,
 				options: {
 					map: true,
 					tocLayerInfos: true
 				}
 			},
 			bookmarks: {
-				include: true,
+				include: false,
 				id: 'bookmarks',
 				type: 'titlePane',
 				path: 'gis/dijit/Bookmarks',
 				title: 'Bookmarks',
 				open: false,
-				position: 2,
+				//position: 2,
 				options: 'config/bookmarks'
 			},
 			find: {
@@ -283,11 +316,11 @@ define([
 				path: 'gis/dijit/Find',
 				title: 'Find',
 				open: false,
-				position: 3,
+				position: 2,
 				options: 'config/find'
 			},
 			draw: {
-				include: true,
+				include: false,
 				id: 'draw',
 				type: 'titlePane',
 				canFloat: true,
@@ -312,7 +345,7 @@ define([
 				options: {
 					map: true,
 					mapClickMode: true,
-					defaultAreaUnit: units.SQUARE_MILES,
+					defaultAreaUnit: units.ACRES,
 					defaultLengthUnit: units.MILES
 				}
 			},
@@ -324,7 +357,7 @@ define([
 				path: 'gis/dijit/Print',
 				title: 'Print',
 				open: false,
-				position: 6,
+				position: 10,
 				options: {
 					map: true,
 					printTaskURL: 'https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task',
@@ -356,7 +389,7 @@ define([
 				}
 			},
 			editor: {
-				include: true,
+				include: false,
 				id: 'editor',
 				type: 'titlePane',
 				path: 'gis/dijit/Editor',

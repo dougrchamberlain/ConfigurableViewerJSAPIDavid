@@ -2,17 +2,24 @@ define({
 	map: true,
 	queries: [
 		{
-			description: 'Find A Public Safety Location By Name',
-			url: 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/PublicSafety/PublicSafetyOperationalLayers/MapServer',
-			layerIds: [1,2,3,4,5,6,7],
-			searchFields: ['FDNAME, PDNAME', 'NAME', 'RESNAME'],
+			description: 'Find Account Number or Name',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/AppraiserWM/MapServer',
+			layerIds: [0],
+			searchFields: ['ACCOUNT', 'NAME1'],
 			minChars: 2
 		},
 		{
-			description: 'Find Incident By Code/Description',
-			url: 'http://sampleserver1.arcgisonline.com/ArcGIS/rest/services/PublicSafety/PublicSafetyOperationalLayers/MapServer',
-			layerIds: [15,17,18],
-			searchFields: ['FCODE','DESCRIPTION'],
+			description: 'Find Subdivision by Name or ID',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/scpaSubsCondosWM/MapServer',
+			layerIds: [0],
+			searchFields: ['SUB_NAME', 'MAX_SUB_ID'],
+			minChars: 2
+		},
+		{
+			description: 'Find by STCD ',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/AppraiserWM/MapServer',
+			layerIds: [0],
+			searchFields: ['Stcd'],
 			minChars: 4
 		}
 	]

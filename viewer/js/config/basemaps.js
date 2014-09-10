@@ -22,6 +22,7 @@ define([
             },
             hybrid: {
                 title: 'Hybrid'
+                
             },
             topo: {
                 title: 'Topo'

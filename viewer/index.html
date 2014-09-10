@@ -11,14 +11,16 @@
         <link rel="stylesheet" type="text/css" href="css/main.css">
     </head>
     <body class="dbootstrap">
+        
         <div class="appHeader">
             <div class="headerLogo">
-                <img alt="logo" src="images/rocket-logo.png" height="54" />
+                <img alt="logo" src="images/FloridaSealNB.png" height="54" />
             </div>
+            
             <div class="headerTitle">
-                Configurable Map Viewer
+                Sarasota County Property Appraiser
                 <div class="subHeaderTitle">
-                    make it your own
+                    Appraiser Map
                 </div>
             </div>
             <div class="search">
@@ -56,8 +58,9 @@
                 file = q[1];
                 if(file.indexOf('/') < 0) {
                     file = 'config/' + file;
-                }
+                }//comment
             }
+            
             var app; //dev only
             require(['dbootstrap','viewer/Controller', file], function(dbootstrap, Controller, config){
                 Controller.startup(config);
