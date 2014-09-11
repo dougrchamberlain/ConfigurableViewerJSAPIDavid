@@ -3,8 +3,14 @@ define([
 	'esri/geometry/Extent',
 	'esri/config',
 	'esri/tasks/GeometryService',
-	'esri/layers/ImageParameters'
-], function(units, Extent, esriConfig, GeometryService, ImageParameters) {
+	'esri/layers/ImageParameters',
+	'esri/dijit/Basemap',
+	'esri/dijit/BasemapLayer',
+	'esri/geometry/Point'  
+
+	], 
+
+function(units, Extent, esriConfig, GeometryService, ImageParameters, Basemap, BasemapLayer, Point) {
 
 	// url to your proxy page, must be on same machine hosting you app. See proxy folder for readme.
 	esriConfig.defaults.io.proxyUrl = 'proxy/proxy.ashx';
@@ -20,69 +26,18 @@ define([
 		//default mapClick mode, mapClickMode lets widgets know what mode the map is in to avoid multipult map click actions from taking place (ie identify while drawing).
 		defaultMapClickMode: 'identify',
 		// map options, passed to map constructor. see: https://developers.arcgis.com/javascript/jsapi/map-amd.html#map1
-		mapOptions: {
-			basemap: 'streets',
-			center: [-82.43, 27.26],
-			zoom: 13,
-			sliderStyle: 'small'
+		mapOptions: {basemap: new Basemap({id:'streets', layers: [new BasemapLayer({url: 
+		'https://ags2.scgov.net/arcgis/rest/services/CachedMapServices/SarasotaCountyStreetsWM/MapServer'})] 	}),
+    	
+    	center: new Point({x:-82.43, y:27.26}),
+    	zoom: 5,
+    	sliderStyle: 'small'
 		},
-		// panes: {
-		// 	left: {
-		// 		splitter: true
-		// 	},
-		// 	right: {
-		// 		id: 'sidebarRight',
-		// 		placeAt: 'outer',
-		// 		region: 'right',
-		// 		splitter: true,
-		// 		collapsible: true
-		// 	},
-		// 	bottom: {
-		// 		id: 'sidebarBottom',
-		// 		placeAt: 'outer',
-		// 		splitter: true,
-		// 		collapsible: true,
-		// 		region: 'bottom'
-		// 	},
-		// 	top: {
-		// 		id: 'sidebarTop',
-		// 		placeAt: 'outer',
-		// 		collapsible: true,
-		// 		splitter: true,
-		// 		region: 'top'
-		// 	}
-		// },
-		// collapseButtonsPane: 'center', //center or outer
 
-		// operationalLayers: Array of Layers to load on top of the basemap: valid 'type' options: 'dynamic', 'tiled', 'feature'.
-		// The 'options' object is passed as the layers options for constructor. Title will be used in the legend only. id's must be unique and have no spaces.
-		// 3 'mode' options: MODE_SNAPSHOT = 0, MODE_ONDEMAND = 1, MODE_SELECTION = 2
-		operationalLayers: [{
-			// type: 'feature',
-			// url: 'http://services1.arcgis.com/g2TonOxuRkIqSOFx/arcgis/rest/services/MeetUpHomeTowns/FeatureServer/0',
-			// title: 'STLJS Meetup Home Towns',
-			// options: {
-			// 	id: 'meetupHometowns',
-			// 	opacity: 1.0,
-			// 	visible: true,
-			// 	outFields: ['*'],
-			mode: 3
-			// },
-			// editorLayerInfos: {
-			// 	disableGeometryUpdate: false
-			// }
-		// }, {
-		// 	type: 'feature',
-		// 	url: 'http://sampleserver3.arcgisonline.com/ArcGIS/rest/services/SanFrancisco/311Incidents/FeatureServer/0',
-		// 	title: 'San Francisco 311 Incidents',
-		// 	options: {
-		// 		id: 'sf311Incidents',
-		// 		opacity: 1.0,
-		// 		visible: true,
-		// 		outFields: ['req_type', 'req_date', 'req_time', 'address', 'district'],
-		// 		mode: 0
-		// 	}
-		}, {
+		
+		
+		operationalLayers: [{mode: 3}, 
+		{
 			type: 'dynamic',
 			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/scpaAppraiserGIS_WM/MapServer',
 			title: 'Appraiser Layers',
@@ -95,11 +50,13 @@ define([
 				opacity: 1.0,
 				visible: false,
 				imageParameters: imageParameters
-			},
+					},
 			identifyLayerInfos: {
 				layerIds: [2, 4, 5, 8, 12, 21]
-			}
-		}, {
+								}
+		
+		}, 
+		{
 			type: 'dynamic',
 			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/AppraiserWM/MapServer',
 			title: 'Parcels',
@@ -109,9 +66,10 @@ define([
 			options: {
 				id: 'parcels',
 				opacity: 1.0,
-				visible: false,
+				visible: true,
 				imageParameters: imageParameters
-			}
+					}
+
 		}],
 		// set include:true to load. For titlePane type set position the the desired order in the sidebar
 		widgets: {
