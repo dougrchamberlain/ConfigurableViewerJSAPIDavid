@@ -27,16 +27,48 @@ function(units, Extent, esriConfig, GeometryService, ImageParameters, Basemap, B
 		defaultMapClickMode: 'identify',
 		// map options, passed to map constructor. see: https://developers.arcgis.com/javascript/jsapi/map-amd.html#map1
 		mapOptions: {basemap: new Basemap({id:'streets', layers: [new BasemapLayer({url: 
-		'https://ags2.scgov.net/arcgis/rest/services/CachedMapServices/SarasotaCountyStreetsWM/MapServer'})] 	}),
+		'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/scpaZoomGrid_WM/MapServer'})] 	}),
     	
     	center: new Point({x:-82.43, y:27.26}),
-    	zoom: 5,
+    	zoom: 1,
     	sliderStyle: 'small'
 		},
 
 		
 		
 		operationalLayers: [{mode: 3}, 
+		
+		{
+			type: 'dynamic',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/AppraiserWM/MapServer',
+			title: 'Identify Parcels',
+			slider: false,
+			noLegend: false,
+			collapsed: false,
+			options: {
+				id: 'parcels',
+				opacity: 1.0,
+				visible: false,
+				imageParameters: imageParameters
+					}
+		},
+
+		{
+			type: 'dynamic',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/scpaParcelsDimensions/MapServer',
+			title: 'Dimensions, Lots, Easements',
+			slider: false,
+			noLegend: false,
+			collapsed: false,
+			options: {
+				id: 'dims',
+				opacity: 1.0,
+				visible: false,
+				imageParameters: imageParameters
+					}
+		},
+
+
 		{
 			type: 'dynamic',
 			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/scpaAppraiserGIS_WM/MapServer',
@@ -56,21 +88,91 @@ function(units, Extent, esriConfig, GeometryService, ImageParameters, Basemap, B
 								}
 		
 		}, 
-		{
+	 
+	 {
 			type: 'dynamic',
-			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/AppraiserWM/MapServer',
-			title: 'Parcels',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaExternal/scpaSTR_WM/MapServer',
+			title: 'Section Township Range',
 			slider: false,
 			noLegend: false,
 			collapsed: false,
 			options: {
-				id: 'parcels',
+				id: 'str',
 				opacity: 1.0,
-				visible: true,
+				visible: false,
 				imageParameters: imageParameters
-					}
+		 			}
 
-		}],
+		
+		},
+
+		{
+			type: 'dynamic',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/scpaAADT/MapServer',
+			title: 'Annual Average Daily Traffic',
+			slider: false,
+			noLegend: false,
+			collapsed: false,
+			options: {
+				id: 'aadt',
+				opacity: 1.0,
+				visible: false,
+				imageParameters: imageParameters
+		 			}
+
+		
+		},
+
+		{
+			type: 'dynamic',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaExternal/scpaZoningWM/MapServer',
+			title: 'Zoning & FLU',
+			slider: true,
+			noLegend: false,
+			collapsed: false,
+			options: {
+				id: 'zoning',
+				opacity: 1.0,
+				visible: false,
+				imageParameters: imageParameters
+		 			}
+
+		},
+
+		{
+			type: 'image',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ImageServices/SC2013/ImageServer',
+			title: 'Aerial 2013',
+			slider: false,
+			noLegend: false,
+			collapsed: false,
+			options: {
+				id: 'Aerial2013',
+				opacity: 1.0,
+				visible: false,
+				imageParameters: imageParameters
+		 			}
+
+		},
+		{
+			type: 'image',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ImageServices/SC2012/ImageServer',
+			title: 'Aerial 2012',
+			slider: false,
+			noLegend: false,
+			collapsed: false,
+			options: {
+				id: 'Aerial2012',
+				opacity: 1.0,
+				visible: false,
+				imageParameters: imageParameters
+		 			}
+
+		}
+
+
+
+		],
 		// set include:true to load. For titlePane type set position the the desired order in the sidebar
 		widgets: {
 			growler: {

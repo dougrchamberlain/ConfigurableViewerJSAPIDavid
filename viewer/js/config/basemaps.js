@@ -21,7 +21,11 @@ define([
                 basemap: new Basemap({
                     id: 'streets',
                     layers: [new BasemapLayer({
+                        url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/scpaZoomGrid_WM/MapServer'
+                    }), new BasemapLayer ({
                         url: 'https://ags2.scgov.net/arcgis/rest/services/CachedMapServices/SarasotaCountyStreetsWM/MapServer'
+                    }), new BasemapLayer({
+                        url: 'https://ags2.scgov.net/arcgis/rest/services/CachedMapServices/SarasotaCountyBaseMapWM/MapServer'
                     })]
                 })
             },
@@ -30,8 +34,12 @@ define([
                 basemap: new Basemap({
                     id: 'satellite',
                     layers: [new BasemapLayer({
-                        url: 'https://ags2.scgov.net/arcgis/rest/services/ImageServices/SC2013WM/ImageServer'
-                    })]
+                        url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/scpaZoomGrid_WM/MapServer'
+                    }), new BasemapLayer({
+                        url: 'https://ags2.scgov.net/arcgis/rest/services/ImageServices/SC2014/ImageServer'
+                    })
+
+                    ]
                 })
             }
             
@@ -43,3 +51,21 @@ define([
 
      });
 //});
+
+//  hybrid: { 
+// 63                 title: 'Hybrid', 
+// 64                 basemap: new Basemap({ 
+// 65                     id: 'hybrid', 
+// 66                     layers: [new BasemapLayer({ 
+// 67                         url: 'http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer' 
+// 68                     }), new BasemapLayer({ 
+// 69                         url: 'http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer', 
+// 70                         isReference: true, 
+// 71                         displayLevels: [0, 1, 2, 3, 4, 5, 6, 7] 
+// 72                     }), new BasemapLayer({ 
+// 73                         url: 'http://services.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer', 
+// 74                         isReference: true, 
+// 75                         displayLevels: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19] 
+// 76                     })] 
+// 77                 }) 
+// 78             }, 
