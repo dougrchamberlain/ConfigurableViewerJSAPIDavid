@@ -3,9 +3,9 @@ define({
 	queries: [
 		{
 			description: 'Find Account Number or Name',
-			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/AppraiserWM/MapServer',
+			url: 'https://ags2.scgov.net/arcgis/rest/services/ScOperational/PropertySearch/MapServer',
 			layerIds: [0],
-			searchFields: ['ACCOUNT', 'NAME1'],
+			searchFields: ['ID', 'NAME1','NAME_ADD2'],
 			minChars: 2
 		},
 		{
@@ -14,13 +14,7 @@ define({
 			layerIds: [0],
 			searchFields: ['SUB_NAME', 'MAX_SUB_ID'],
 			minChars: 2
-		},
-		{
-			description: 'Find by STCD ',
-			url: 'https://ags2.scgov.net/arcgis/rest/services/ScpaInternal/AppraiserWM/MapServer',
-			layerIds: [0],
-			searchFields: ['Stcd'],
-			minChars: 4
 		}
+		
 	]
 });
