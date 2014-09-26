@@ -34,7 +34,7 @@ function(units, Extent, esriConfig, GeometryService, ImageParameters, Basemap, B
     	sliderStyle: 'small'
 		},
 
-		
+		//operational layers
 		
 		operationalLayers: [{mode: 3}, 
 		
