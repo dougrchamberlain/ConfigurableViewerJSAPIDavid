@@ -21,7 +21,15 @@ define([
         this.initializeSidebar();
         domStyle.set(this.pagerNode,'display','none');
         this.featureNode.innerHTML = 'Click to select a feature';        
+        this.map.on('layer-add', lang.hitch(this,function(event){
+            //names from find widget, clears out panel when find runs
+            if (event.layer.id ==='findGraphics_polygon'||event.layer.id === 'findGraphics_line'||event.layer.id ==='findGraphics_point'){
+            event.layer.on('graphics-clear', lang.hitch(this, this.clearPanel));
+        }
+        }));
+
         this.startup();
+
 
         },
       displayPopupContent: function (feature){
@@ -50,6 +58,13 @@ define([
                 this.map.infoWindow.selectNext();
             },
 
+            clearPanel: function (){
+
+                this.featureNode.innerHTML = 'Click to select a feature';
+                this.identifyPanelNode.set('content',null);
+
+            },
+
             initializeSidebar: function(){
                 //when the selection changes update the side panel to display the popup info for the 
                 //currently selected feature. 
@@ -73,6 +88,9 @@ define([
                     // //registry.byId replaces dijit.byId
                     // registry.byId('leftPane').set('content', '');
                     // domUtils.hide(dom.byId('pager'));
+                    //this.featureNode.innerHTML = 'Click to select a feature';
+                    //this.identifyPanelNode.set('content',null);
+                    console.log('executed!');
                 }));
 
                 //When features are associated with the  map's info window update the sidebar with the new content. 
